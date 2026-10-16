@@ -1,0 +1,12 @@
+System Event Log Summary:
+------------------------
+Name: Alice Vance
+Primary mail account: alice@harvard.edu
+Cellular record entry: +1 617-555-0199
+
+Log Entry #88291
+Name: Bob Miller
+Email address: bob_at_gmail.com
+Phone status flag: 12345
+
+Note: We also detected an entry for Name: Charlie Green who uses charlie@domain.com, but their mobile lines are currently unlisted. Hello Team, please ensure these logs are filed.
