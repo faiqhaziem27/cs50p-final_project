@@ -1,92 +1,51 @@
-# Polymorphic Object-Oriented Contact & Artifact Harvester
+Contact & Log Data Harvester
+Video Demo: https://youtu.be/kOqqnzP5RWw
+What is this project?
+This is a command-line tool I built in Python to help pull and clean up contact information (like names, emails, and phone numbers) from messy text files and spreadsheets.
 
-#### Video Demo: https://youtu.be/kOqqnzP5RWw
+When working with data, contact details are often scattered across random places like chat dumps, server logs, or unformatted text files. Instead of manually copying and pasting everything, this tool automatically scans those files, cleans up the mess, checks that the information is valid, and saves everything neatly into a single CSV file.
 
-#### Description:
+Key Features
+Supports .txt and .csv files: Automatically checks the file type you feed into it and handles the data accordingly.
 
-## Comprehensive Project Overview
-The Polymorphic Object-Oriented Contact & Artifact Harvester is a production-ready, command-line utility engineered in Python. This tool programmatically aggregates, normalizes, standardizes, and parses contact profile information from fluctuating, unstructured data streams. The core application engine solves a ubiquitous real-world problem: processing completely loose communication artifacts (such as automated server log entries, chat transcripts, raw terminal dumps, and conversational text notes) alongside structured database spreadsheets.
+Smart Text Parsing: Uses regular expressions (regex) to find names, emails, and phone numbers even inside messy text notes.
 
-Unlike primitive text scripts that only loop through specific characters or scan lines sequentially, this system deploys an architecture that dynamically inspects and routes data bundles based on their file extensions. Once incoming records penetrate the application's processing pipeline, they are instantly sanitized of superficial layout noise and converted into uniform, encapsulated Python memory dictionaries. The application maintains rigid data integrity using layered regular expression testing structures, isolating clean profile models before exporting the compilation down into an external comma-separated asset list. This software serves as an exceptional automation utility for data analysts, system administrators, or software engineers who need to quickly harvest clean identity metrics out of messy operational environments.
+Ignores Extra Noise: Filters out common text like "Hello Team" or "Good Morning" so it only grabs actual contact details.
 
----
+Handles Missing Data: If a contact is missing an email or phone number, it fills in "N/A" or "Unknown" so the output file stays neat and aligned.
 
-## Architectural & Technical Design Considerations
-This utility was built on solid software engineering principles, prioritizing object encapsulation, structural consistency, and runtime error isolation.
+Exports to CSV: Saves all valid contacts directly into a clean spreadsheet format.
 
-### 1. Object-Oriented State Isolation (OOP)
-Instead of executing functional routines or mutating loose global tracking lists, the application manages all localized data boundaries within a central database container class: `ContactManager`. This class manages state internally via `self.contacts`, exposing safe entry modification channels while completely hiding extraction complexities away from the user interface loop in `main()`.
+How the Code is Built
+project.py: The main Python script.
 
-### 2. Streamlined Property Abstraction
-To demonstrate structural mastery over advanced Python capabilities, the auditing filter layer utilizes the `@property` decorator pattern. This converts the operational logic of data verification into a clean attribute abstraction layer. When `contact_manager.get_valid_contacts` is referenced inside the file execution loop, it evaluates existing state lists dynamically without needing a parenthetical function call expression. This structure minimizes syntax clutter, an approach highly valued in professional micro-framework production.
+Uses a class called ContactManager to store and manage the contacts.
 
-### 3. Asymmetric Text Data Alignment
-When reading unstructured `.txt` communication logs via unstructured regular expressions, names, emails, and phone digits rarely match up in equal counts. To eliminate array indexing exceptions (`IndexError`) when parsing uneven datasets, the class implements an automatic alignment mapping mechanism (`max_len`). It processes records using fallback placeholders (`"Unknown"` and `"N/A"`) to build a uniform internal list of dictionaries that perfectly mirrors a pristine corporate spreadsheet layout.
+Uses @property to quickly filter valid contacts.
 
-### 4. Contextual Token Guard rails
-To counter conversational text noise (such as phrases like "Hello Team", "Good Morning", or "Dear Customer") from corrupting the identity rows, the text processing regular expression engine implements explicit non-capturing boundaries `(?:[Nn]ame:\s*)`. This structure forces the system to look for an explicit contextual identifier prefix, isolating the literal name string group securely while throwing away the surrounding prefix noise automatically.
+Handles reading .csv and .txt files, validating the data, and writing the final CSV file.
 
----
+test_project.py: Contains unit tests using pytest to make sure the file reading, parsing, and writing functions work as expected.
 
-## Technical File Blueprint Breakdown
+requirements.txt: Lists the external library needed (pytest).
 
-### 1. `project.py`
-The execution core of the utility containing class properties, regex patterns, and command-line interfaces:
-*   `__init__(self)`: Instantiates a clean, independent list array to serve as the application's internal data staging environment.
-*   `load_csv(self, file_path)`: Opens tabular records using `csv.DictReader` and strips trailing white space from columns.
-*   `load_txt(self, file_path)`: Parses raw text string contents, applies non-capturing prefix regular expressions, and deploys structural bounds tracking loops.
-*   `get_valid_contacts(self)`: Decorating as a `@property`, it runs character validation rules (`re.match`) on internal rows using a logical `or` boundary to keep partially populated entries.
-*   `export_to_csv(self, rows, output_filename)`: Opens a fresh target file path and uses `csv.DictWriter` to compile rows under exact header field layouts.
-*   `main()`: Coordinates argument length check logic (`sys.argv`), wraps file exceptions gracefully inside `try/except` statements, and handles terminal print loops.
+How to Install and Run
+Prerequisites
+Make sure you have Python 3 installed on your computer.
 
-### 2. `test_project.py`
-The verification module executed via the `pytest` engine framework. It isolates target logic branches through test functions prefixed with `test_`. The script handles file environment sandboxing by testing reading and writing loops across isolated files using virtual directory paths (`tmp_path`).
-
-### 3. `requirements.txt`
-Documents application dependencies. It specifies the configuration baseline (`pytest`) needed to support local unit verification test workflows.
-
----
-
-## Installation & Deployment Guide
-
-### Prerequisites
-Ensure your local terminal machine is running **Python 3.8+** or higher.
-
-### Step 1: Navigate to Project Directory
-Ensure your required project files are organized inside a single workspace directory:
-```bash
-cd path/to/your/project_directory
-```
-
-### Step 2: Install Testing Dependencies
-Install the required unit tracking tools documented in your dependency file:
-```bash
+1. Install Dependencies
+Open your terminal in the project folder and run:
 pip install -r requirements.txt
-```
 
----
+2. Run the Program
+You can run the script by passing an input file and an output file name in the terminal:
 
-## Execution Instructions & Examples
+To clean a messy text file:
+python project.py sample.txt output.csv
 
-Execute the script through your system terminal by passing exactly two command-line file arguments:
-```bash
-python project.py <input_file_path> <output_file_path>
-```
+To filter a spreadsheet file:
+python project.py sample.csv output.csv
 
-### Example A: Scraping Unstructured Text Logs
-To extract and standardize contacts hidden inside unstructured notes:
-```bash
-python project.py sample.txt parsed_output.csv
-```
-
-### Example B: Auditing Tabular Databases
-To filter completely clean records out of messy spreadsheet inputs:
-```bash
-python project.py sample.csv filtered_output.csv
-```
-
-### Example C: Invoking the Verification Suite
-To execute internal unit tests and verify code architecture stability:
-```bash
+3. Run the Unit Tests
+To verify that all the tests pass:
 pytest test_project.py
-```
